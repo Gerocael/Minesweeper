@@ -1,5 +1,7 @@
 package minesweeper.core;
 
+import java.util.Random;
+
 /**
  * Field represents playing field and game logic.
  */
@@ -74,16 +76,32 @@ public class Field {
      * @param row    row number
      * @param column column number
      */
-    public void markTile(int row, int column) {
-        throw new UnsupportedOperationException("Method markTile not yet implemented");
+    public void markTile(int rowCount, int columnCount) {
+        Tile tile = tiles[rowCount][columnCount];
+        if (tile.getState() == Tile.State.CLOSED) {
+            tile.setState(Tile.State.MARKED);
+        }
+        else if (tile.getState() == Tile.State.MARKED) {
+            tile.setState(Tile.State.CLOSED);
+        }
     }
 
     /**
      * Generates playing field.
      */
     private void generate() {
-//        throw new UnsupportedOperationException("Method generate not yet implemented");
-        System.out.println("gc");
+        int i = 0;
+        Random random = new Random();
+        int x = random.nextInt(rowCount);
+        int y = random.nextInt(columnCount);
+        Mine mine = new Mine();
+        while (i < mineCount) {
+            if (tiles[x][y] == null){
+                tiles[x][y] = mine;
+                i++;
+                System.out.println("*");
+            }
+        }
     }
 
     /**
@@ -120,4 +138,26 @@ public class Field {
 
         return count;
     }
+
+    private int getRowCount() {
+        return rowCount;
+    }
+
+    private int getColumnCount() {
+        return columnCount;
+    }
+
+    private int getMineCount() {
+        return mineCount;
+    }
+
+    private GameState getState() {
+        return state;
+    }
+
+    public Tile getTile(int row, int column) {
+        return tiles[row][column];
+    }
+
+
 }
