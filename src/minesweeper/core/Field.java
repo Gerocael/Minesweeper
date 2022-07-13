@@ -48,13 +48,6 @@ public class Field {
         //generate the field content
         generate();
 
-
-        for (int i = 0; i < rowCount; i++) {
-            for (int j = 0; j < columnCount; j++) {
-                System.out.print(tiles[i][j]);
-            }
-            System.out.println();
-        }
     }
 
     /**
@@ -152,19 +145,19 @@ public class Field {
         return count;
     }
 
-    private int getRowCount() {
+    public int getRowCount() {
         return rowCount;
     }
 
-    private int getColumnCount() {
+    public int getColumnCount() {
         return columnCount;
     }
 
-    private int getMineCount() {
+    public int getMineCount() {
         return mineCount;
     }
 
-    private GameState getState() {
+    public GameState getState() {
         return state;
     }
 
