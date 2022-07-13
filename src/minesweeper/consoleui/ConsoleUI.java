@@ -8,7 +8,7 @@ import minesweeper.core.Field;
 /**
  * Console user interface.
  */
-public class ConsoleUI {
+public class ConsoleUI implements UserInterface {
     /** Playing field. */
     private Field field;
     
@@ -31,6 +31,7 @@ public class ConsoleUI {
      * Starts the game.
      * @param field field of mines and clues
      */
+    @Override
     public void newGameStarted(Field field) {
         this.field = field;
         do {
@@ -43,6 +44,7 @@ public class ConsoleUI {
     /**
      * Updates user interface - prints the field.
      */
+    @Override
     public void update() {
         throw new UnsupportedOperationException("Method update not yet implemented");
     }
