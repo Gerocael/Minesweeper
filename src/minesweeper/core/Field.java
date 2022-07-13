@@ -46,6 +46,20 @@ public class Field {
 
         //generate the field content
         generate();
+
+
+        for (int i = 0; i < rowCount; i++) {
+            for (int j = 0; j < columnCount; j++) {
+                if (tiles[i][j] instanceof Mine) {
+                    System.out.print("M");
+                } else if (tiles[i][j] instanceof Clue) {
+//                    System.out.print((Clue).getValue);
+                } else {
+                    System.out.print("-");
+                }
+            }
+            System.out.println();
+        }
     }
 
     /**
@@ -80,8 +94,7 @@ public class Field {
         Tile tile = tiles[rowCount][columnCount];
         if (tile.getState() == Tile.State.CLOSED) {
             tile.setState(Tile.State.MARKED);
-        }
-        else if (tile.getState() == Tile.State.MARKED) {
+        } else if (tile.getState() == Tile.State.MARKED) {
             tile.setState(Tile.State.CLOSED);
         }
     }
@@ -92,14 +105,19 @@ public class Field {
     private void generate() {
         int i = 0;
         Random random = new Random();
-        int x = random.nextInt(rowCount);
-        int y = random.nextInt(columnCount);
-        Mine mine = new Mine();
         while (i < mineCount) {
-            if (tiles[x][y] == null){
-                tiles[x][y] = mine;
+            int x = random.nextInt(rowCount);
+            int y = random.nextInt(columnCount);
+            if (tiles[x][y] == null) {
+                tiles[x][y] = new Mine();
                 i++;
-                System.out.println("*");
+            }
+        }
+        for (int j = 0; j < rowCount; j++) {
+            for (int k = 0; k < columnCount; k++) {
+                if (tiles[j][k] == null) {
+                    tiles[j][k] = new Clue(countAdjacentMines(j, k));
+                }
             }
         }
     }
