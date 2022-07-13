@@ -1,5 +1,6 @@
 package minesweeper.core;
 
+import java.sql.SQLOutput;
 import java.util.Random;
 
 /**
@@ -50,13 +51,7 @@ public class Field {
 
         for (int i = 0; i < rowCount; i++) {
             for (int j = 0; j < columnCount; j++) {
-                if (tiles[i][j] instanceof Mine) {
-                    System.out.print("M");
-                } else if (tiles[i][j] instanceof Clue) {
-//                    System.out.print((Clue).getValue);
-                } else {
-                    System.out.print("-");
-                }
+                System.out.print(tiles[i][j]);
             }
             System.out.println();
         }
