@@ -72,7 +72,6 @@ public class ConsoleUI implements UserInterface {
             System.out.println();
         }
         System.out.println("Please enter your selection <X> EXIT, <MA1> MARK, <OB4> OPEN :");
-
     }
 
     /**
@@ -80,6 +79,5 @@ public class ConsoleUI implements UserInterface {
      * Reads line from console and does the action on a playing field according to input string.
      */
     private void processInput() {
-        throw new UnsupportedOperationException("Method processInput not yet implemented");
     }
 }
