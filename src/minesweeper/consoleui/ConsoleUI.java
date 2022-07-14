@@ -51,27 +51,23 @@ public class ConsoleUI implements UserInterface {
 
     @Override
     public void update() {
-        System.out.print(" ");
+        System.out.print("  ");
         for (int i = 0; i < field.getColumnCount(); i++) {
             System.out.printf("%2s",i);
         }
         System.out.println();
         for (int i = 0; i < field.getRowCount(); i++) {
-            System.out.print((char) (i + 65) + " ");
-            //            System.out.printf("%3c", (i + 65));
+                        System.out.printf("%2c", (i + 65));
             for (int j = 0; j < field.getColumnCount(); j++) {
                 Tile t = field.getTile(i, j);
                 if (t.getState() == Tile.State.OPEN) {
-                    System.out.printf(t + " ");
-//                    System.out.printf("%3s", t);
+                    System.out.printf("%2s", t);
                 }
                 if (t.getState() == Tile.State.MARKED) {
-                    System.out.printf("%s", t);
-                    //                    System.out.printf("%3s", "M");
+                    System.out.printf("%2s", "M");
                 }
                 if (t.getState() == Tile.State.CLOSED) {
-                    System.out.printf("%s ", t);
-                    //                    System.out.printf("%3s", "-");
+                    System.out.printf("%2s", "-");
                 }
             }
             System.out.println();
