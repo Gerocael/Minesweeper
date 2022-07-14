@@ -116,9 +116,8 @@ public class Field {
      * @return true if game is solved, false otherwise
      */
     private boolean isSolved() {
-        return true;
-//        if(getNumberof(Clue+Mine)-getNumberof(Clue= getNumberOf(Mine)))
-
+//        if(getNumberOf(Clue+Mine)-getNumberOf(Clue= getNumberOf(Mine)))
+//
 //        private int getNumberOf(Tile.State state){
 //            int aCounter = 0;
 //            int oCounter = 0;
