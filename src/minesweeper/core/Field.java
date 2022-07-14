@@ -1,6 +1,5 @@
 package minesweeper.core;
 
-import java.sql.SQLOutput;
 import java.util.Random;
 
 /**
@@ -116,20 +115,23 @@ public class Field {
      * @return true if game is solved, false otherwise
      */
     private boolean isSolved() {
-//        if(getNumberOf(Clue+Mine)-getNumberOf(Clue= getNumberOf(Mine)))
-//
-//        private int getNumberOf(Tile.State state){
-//            int aCounter = 0;
-//            int oCounter = 0;
-//            for (int i = 0; i < rowCount; i++) {
-//                for (int j = 0; j < columnCount; j++) {
-//                    if(tiles[i][j].getState()== Tile.State.OPEN;
-//                    oCounter++;
-//                }
-//                return true;
-//            }
-//        return false;
-//        }
+        int tileCount = rowCount * columnCount;
+        if ((tileCount - getNumberOf(Tile.State.OPEN)) == getMineCount()){
+            return true;
+        }
+        return false;
+    }
+
+    private int getNumberOf(Tile.State state) {
+        int counter = 0;
+        for (int i = 0; i < rowCount; i++) {
+            for (int j = 0; j < columnCount; j++) {
+                if (state.equals(Tile.State.OPEN)) {
+                    counter++;
+                }
+            }
+        }
+        return counter;
     }
 
     /**

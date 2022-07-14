@@ -3,11 +3,10 @@ package minesweeper.consoleui;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import minesweeper.core.Clue;
-import minesweeper.core.Field;
-import minesweeper.core.Mine;
-import minesweeper.core.Tile;
+import minesweeper.core.*;
 
 /**
  * Console user interface.
@@ -17,8 +16,6 @@ public class ConsoleUI implements UserInterface {
      * Playing field.
      */
     private Field field;
-
-//    private int format = 2;
 
     /**
      * Input reader.
@@ -41,12 +38,13 @@ public class ConsoleUI implements UserInterface {
     @Override
     public void newGameStarted(Field field) {
         this.field = field;
-//        this.format = "%" + format + "%s;
         do {
             update();
             processInput();
-            throw new UnsupportedOperationException("Resolve the game state - winning or loosing condition.");
-        } while (true);
+        } while (field.getState()!=GameState.FAILED || field.getState()!=GameState.SOLVED);
+        if(field.getState()!=GameState.FAILED || field.getState()!=GameState.SOLVED){
+            System.exit(0);
+        }
     }
 
     @Override
@@ -80,7 +78,11 @@ public class ConsoleUI implements UserInterface {
      * Reads line from console and does the action on a playing field according to input string.
      */
     private void processInput() {
-//        String line = readLine();
-//        System.out.println(line);
+        String line = readLine();
+        System.out.println(line);
+        Pattern pattern =
+                Pattern.compile("O([A-I])([0-8])");
+        Matcher matcher =
+                pattern.matcher("OA77");
     }
 }
