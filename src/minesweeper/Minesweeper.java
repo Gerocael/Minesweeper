@@ -1,6 +1,7 @@
 package minesweeper;
 
 import minesweeper.consoleui.ConsoleUI;
+import minesweeper.consoleui.UserInterface;
 import minesweeper.core.Field;
 
 /**
@@ -8,7 +9,7 @@ import minesweeper.core.Field;
  */
 public class Minesweeper {
     /** User interface. */
-    private ConsoleUI userInterface;
+    private UserInterface userInterface;
  
     /**
      * Constructor.

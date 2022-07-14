@@ -18,6 +18,8 @@ public class ConsoleUI implements UserInterface {
      */
     private Field field;
 
+//    private int format = 2;
+
     /**
      * Input reader.
      */
@@ -39,6 +41,7 @@ public class ConsoleUI implements UserInterface {
     @Override
     public void newGameStarted(Field field) {
         this.field = field;
+//        this.format = "%" + format + "%s;
         do {
             update();
             processInput();
@@ -48,22 +51,27 @@ public class ConsoleUI implements UserInterface {
 
     @Override
     public void update() {
-        System.out.printf("  ");
+        System.out.print(" ");
         for (int i = 0; i < field.getColumnCount(); i++) {
-            System.out.printf((i + 1) + " ");
+            System.out.printf("%2s",i);
         }
         System.out.println();
         for (int i = 0; i < field.getRowCount(); i++) {
             System.out.print((char) (i + 65) + " ");
+            //            System.out.printf("%3c", (i + 65));
             for (int j = 0; j < field.getColumnCount(); j++) {
-                if(field.getTile(i,j).getState() == Tile.State.OPEN ) {
-                    System.out.printf((field.getTile(i, j)) + " ");
+                Tile t = field.getTile(i, j);
+                if (t.getState() == Tile.State.OPEN) {
+                    System.out.printf(t + " ");
+//                    System.out.printf("%3s", t);
                 }
-                if (field.getTile(i, j).getState() == Tile.State.MARKED) {
-                    System.out.printf("%s", field.getTile(i, j));
+                if (t.getState() == Tile.State.MARKED) {
+                    System.out.printf("%s", t);
+                    //                    System.out.printf("%3s", "M");
                 }
-                if (field.getTile(i, j).getState() == Tile.State.CLOSED) {
-                    System.out.printf("%s ", field.getTile(i ,j));
+                if (t.getState() == Tile.State.CLOSED) {
+                    System.out.printf("%s ", t);
+                    //                    System.out.printf("%3s", "-");
                 }
             }
             System.out.println();

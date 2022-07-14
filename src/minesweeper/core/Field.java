@@ -116,7 +116,21 @@ public class Field {
      * @return true if game is solved, false otherwise
      */
     private boolean isSolved() {
-        throw new UnsupportedOperationException("Method isSolved not yet implemented");
+        return true;
+//        if(getNumberof(Clue+Mine)-getNumberof(Clue= getNumberOf(Mine)))
+
+//        private int getNumberOf(Tile.State state){
+//            int aCounter = 0;
+//            int oCounter = 0;
+//            for (int i = 0; i < rowCount; i++) {
+//                for (int j = 0; j < columnCount; j++) {
+//                    if(tiles[i][j].getState()== Tile.State.OPEN;
+//                    oCounter++;
+//                }
+//                return true;
+//            }
+//        return false;
+//        }
     }
 
     /**
