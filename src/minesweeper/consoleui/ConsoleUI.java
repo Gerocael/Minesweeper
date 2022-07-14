@@ -81,7 +81,7 @@ public class ConsoleUI implements UserInterface {
         String line = readLine();
         System.out.println(line);
         Pattern pattern =
-                Pattern.compile("O([A-I])([0-8])");
+                Pattern.compile("0([A-I])([0-8])");
         Matcher matcher =
                 pattern.matcher("OA77");
     }

@@ -63,6 +63,9 @@ public class Field {
                 state = GameState.FAILED;
                 return;
             }
+//            if(tile instanceof Clue){
+//                openAdjacentTiles();
+//            }
 
             if (isSolved()) {
                 state = GameState.SOLVED;
@@ -159,7 +162,24 @@ public class Field {
 
         return count;
     }
+    private int openAdjacentTiles(int row, int column) {
+        int count = 0;
+        for (int rowOffset = -1; rowOffset <= 1; rowOffset++) {
+            int actRow = row + rowOffset;
+            if (actRow >= 0 && actRow < rowCount) {
+                for (int columnOffset = -1; columnOffset <= 1; columnOffset++) {
+                    int actColumn = column + columnOffset;
+                    if (actColumn >= 0 && actColumn < columnCount) {
+                        if (tiles[actRow][actColumn] instanceof Clue) {
+                            return (rowOffset + openAdjacentTiles(rowOffset,columnOffset - 1));
+                        }
+                    }
+                }
+            }
+        }
 
+        return count;
+    }
     public int getRowCount() {
         return rowCount;
     }
