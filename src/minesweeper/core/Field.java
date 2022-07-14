@@ -69,7 +69,6 @@ public class Field {
 
             if (isSolved()) {
                 state = GameState.SOLVED;
-                return;
             }
         }
     }
@@ -119,7 +118,7 @@ public class Field {
      */
     private boolean isSolved() {
         int tileCount = rowCount * columnCount;
-        if ((tileCount - getNumberOf(Tile.State.OPEN)) == getMineCount()){
+        if ((tileCount - getNumberOf(Tile.State.OPEN)) == getMineCount()) {
             return true;
         }
         return false;
@@ -159,9 +158,9 @@ public class Field {
                 }
             }
         }
-
         return count;
     }
+
     private int openAdjacentTiles(int row, int column) {
         int count = 0;
         for (int rowOffset = -1; rowOffset <= 1; rowOffset++) {
@@ -170,16 +169,16 @@ public class Field {
                 for (int columnOffset = -1; columnOffset <= 1; columnOffset++) {
                     int actColumn = column + columnOffset;
                     if (actColumn >= 0 && actColumn < columnCount) {
-                        if (tiles[actRow][actColumn] instanceof Clue) {
-                            return (rowOffset + openAdjacentTiles(rowOffset,columnOffset - 1));
+                        if (tiles[actRow][actColumn] instanceof Clue ) {
+                            return (rowOffset + openAdjacentTiles(rowOffset, columnOffset - 1));
                         }
                     }
                 }
             }
         }
-
         return count;
     }
+
     public int getRowCount() {
         return rowCount;
     }

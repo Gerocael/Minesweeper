@@ -42,8 +42,12 @@ public class ConsoleUI implements UserInterface {
             update();
             processInput();
         } while (field.getState()!=GameState.FAILED || field.getState()!=GameState.SOLVED);
-        if(field.getState()!=GameState.FAILED || field.getState()!=GameState.SOLVED){
+        if(field.getState()==GameState.SOLVED){
+            System.out.println("Win!");
             System.exit(0);
+        } else {
+            System.out.println("Game over.");
+            System.exit(1);
         }
     }
 
@@ -81,8 +85,15 @@ public class ConsoleUI implements UserInterface {
         String line = readLine();
         System.out.println(line);
         Pattern pattern =
-                Pattern.compile("0([A-I])([0-8])");
+                Pattern.compile("O([A-I])([0-8])",Pattern.CASE_INSENSITIVE);
         Matcher matcher =
-                pattern.matcher("OA77");
+                pattern.matcher(line);
+        boolean matches = matcher.matches();
+        do{
+            pattern.matcher(line);
+        } while (!matches ||readLine()==null);
+//        if(!matches||readLine()==null){
+//            readLine();
+//        }
     }
 }
