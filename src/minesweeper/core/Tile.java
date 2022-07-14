@@ -16,7 +16,7 @@ public abstract class Tile {
     }
     
     /** Tile state. */
-    private State state = State.OPEN;
+    private State state = State.CLOSED;
         
     /**
      * Returns current state of this tile.
@@ -34,4 +34,10 @@ public abstract class Tile {
         this.state = state;
     }
 
+    @Override
+    public String toString() {
+        if(this.state == State.MARKED) {
+            return "M";
+        } else return "-";
+    }
 }

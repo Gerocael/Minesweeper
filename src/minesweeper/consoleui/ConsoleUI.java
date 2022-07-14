@@ -80,5 +80,7 @@ public class ConsoleUI implements UserInterface {
      * Reads line from console and does the action on a playing field according to input string.
      */
     private void processInput() {
+//        String line = readLine();
+//        System.out.println(line);
     }
 }
