@@ -48,25 +48,22 @@ public class ConsoleUI implements UserInterface {
 
     @Override
     public void update() {
-        System.out.print("  ");
+        System.out.printf("  ");
         for (int i = 0; i < field.getColumnCount(); i++) {
-            System.out.print(i + " ");
+            System.out.printf((i + 1) + " ");
         }
         System.out.println();
         for (int i = 0; i < field.getRowCount(); i++) {
             System.out.print((char) (i + 65) + " ");
             for (int j = 0; j < field.getColumnCount(); j++) {
-                if(field.getTile(i,j).getState() == Tile.State.OPEN && field.getTile(i, j) instanceof Clue) {
-                    System.out.print((field.getTile(i, j)) + " ");
-                }
-                if(field.getTile(i,j).getState() == Tile.State.OPEN && field.getTile(i, j) instanceof Mine){
-                    System.out.println("X ");
+                if(field.getTile(i,j).getState() == Tile.State.OPEN ) {
+                    System.out.printf((field.getTile(i, j)) + " ");
                 }
                 if (field.getTile(i, j).getState() == Tile.State.MARKED) {
-                    System.out.print("M ");
+                    System.out.printf("%s", field.getTile(i, j));
                 }
                 if (field.getTile(i, j).getState() == Tile.State.CLOSED) {
-                    System.out.print("- ");
+                    System.out.printf("%s ", field.getTile(i ,j));
                 }
             }
             System.out.println();
