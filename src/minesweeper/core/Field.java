@@ -64,7 +64,9 @@ public class Field {
                 return;
             }
 //            if(tile instanceof Clue){
-//                openAdjacentTiles();
+//            Clue c= (Clue)tile;
+//            if(c.getValue() == 0)
+//                openAdjacentTiles(row, column);
 //            }
 
             if (isSolved()) {
@@ -128,7 +130,7 @@ public class Field {
         int counter = 0;
         for (int i = 0; i < rowCount; i++) {
             for (int j = 0; j < columnCount; j++) {
-                if (state.equals(Tile.State.OPEN)) {
+                if (tiles[i][j].getState()==state) {
                     counter++;
                 }
             }
@@ -161,7 +163,7 @@ public class Field {
         return count;
     }
 
-    private int openAdjacentTiles(int row, int column) {
+    public void openAdjacentTiles(int row, int column) {
         int count = 0;
         for (int rowOffset = -1; rowOffset <= 1; rowOffset++) {
             int actRow = row + rowOffset;
@@ -169,14 +171,11 @@ public class Field {
                 for (int columnOffset = -1; columnOffset <= 1; columnOffset++) {
                     int actColumn = column + columnOffset;
                     if (actColumn >= 0 && actColumn < columnCount) {
-                        if (tiles[actRow][actColumn] instanceof Clue ) {
-                            return (rowOffset + openAdjacentTiles(rowOffset, columnOffset - 1));
-                        }
+                        openTile(actRow, actColumn);
                     }
                 }
             }
         }
-        return count;
     }
 
     public int getRowCount() {
