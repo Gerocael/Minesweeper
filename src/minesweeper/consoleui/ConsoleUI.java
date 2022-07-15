@@ -100,7 +100,7 @@ public class ConsoleUI implements UserInterface {
             System.exit(1);
         }
         if (!matcher.matches()) {
-            throw new WrongFormatException("Wrong");
+            throw new WrongFormatException("Wrong input.");
         }
             int row = matcher.group(2).charAt(0) - 65;
             int column = Integer.parseInt(matcher.group(3));
@@ -109,5 +109,11 @@ public class ConsoleUI implements UserInterface {
                 } else {
                     field.markTile(row, column);
                 }
+        if (row > field.getRowCount() || column > field.getColumnCount()) {
+            throw new WrongFormatException("Larger number than expected.");
+        }
+        if (row < field.getRowCount() || column < field.getColumnCount()) {
+            throw new WrongFormatException("Smaller number than expected.");
+        }
     }
 }
