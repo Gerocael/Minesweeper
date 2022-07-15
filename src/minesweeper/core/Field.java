@@ -63,11 +63,11 @@ public class Field {
                 state = GameState.FAILED;
                 return;
             }
-//            if(tile instanceof Clue){
-//            Clue c= (Clue)tile;
-//            if(c.getValue() == 0)
-//                openAdjacentTiles(row, column);
-//            }
+            if (tile instanceof Clue) {
+                Clue c = (Clue) tile;
+                if (c.getValue() == 0)
+                    openAdjacentTiles(row, column);
+            }
 
             if (isSolved()) {
                 state = GameState.SOLVED;
@@ -130,7 +130,7 @@ public class Field {
         int counter = 0;
         for (int i = 0; i < rowCount; i++) {
             for (int j = 0; j < columnCount; j++) {
-                if (tiles[i][j].getState()==state) {
+                if (tiles[i][j].getState() == state) {
                     counter++;
                 }
             }

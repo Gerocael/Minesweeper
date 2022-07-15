@@ -3,6 +3,7 @@ package minesweeper.consoleui;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,7 +42,7 @@ public class ConsoleUI implements UserInterface {
         do {
             update();
             processInput();
-        } while (field.getState() != GameState.FAILED || field.getState() != GameState.SOLVED);
+        } while (field.getState() == GameState.PLAYING);
         if (field.getState() == GameState.SOLVED) {
             System.out.println("Win!");
             System.exit(0);
@@ -82,40 +83,31 @@ public class ConsoleUI implements UserInterface {
      * Reads line from console and does the action on a playing field according to input string.
      */
     private void processInput() {
-        String line = readLine();
-        System.out.println(line);
-        Pattern pattern =
-                Pattern.compile("O([A-I])([0-8])", Pattern.CASE_INSENSITIVE);
-        Matcher matcher =
-                pattern.matcher(line);
-        boolean matches = matcher.matches();
-        do {
-            pattern.matcher(line);
-        } while (!matches || readLine() == null);
+        String line = readLine().trim().toUpperCase();
+        try {
+            handleInput(line);
+        } catch (WrongFormatException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
-        if(line.equals("X")){
+    private void handleInput(String input) throws WrongFormatException {
+        Pattern pattern = Pattern.compile("(O|M)([A-I])([0-8])", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(input);
+
+        if (input.equals("X")) {
             System.out.println("Game over.");
             System.exit(1);
         }
-        int row = matcher.group(1).charAt(0)-65;
-        int column = Integer.parseInt(matcher.group(2));
-
-
-//        if(line.equals("X")) {
-//            System.out.println("Game over.");
-//            System.exit(1 );
-//        }
-//        if(line.equals("M")){
-//
-//        }
-//        int row = zadany char
-//        int column zadane cislo
-//        if(matcher.matches()){
-            if(matcher.group(0).equals("O")){
-                field.openTile();
+        if (!matcher.matches()) {
+            throw new WrongFormatException("Wrong");
         }
-            if(matcher.group(1).equals("M")){
-                field.markTile();
-            }
+            int row = matcher.group(2).charAt(0) - 65;
+            int column = Integer.parseInt(matcher.group(3));
+                if (matcher.group(1).equals("O")) {
+                    field.openTile(row, column);
+                } else {
+                    field.markTile(row, column);
+                }
     }
 }
