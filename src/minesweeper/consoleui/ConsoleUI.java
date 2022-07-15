@@ -3,7 +3,6 @@ package minesweeper.consoleui;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -75,7 +74,9 @@ public class ConsoleUI implements UserInterface {
             }
             System.out.println();
         }
-        System.out.println("Please enter your selection <X> EXIT, <MA1> MARK, <OB4> OPEN :");
+//        getRemainingMinesCount();
+//        System.out.printf("Remaining number of un/marked mines: %d%n", getRemainingMinesCount());
+        System.out.println("Please enter your selection <X> EXIT, <MA1> MARK, <OB4> OPEN: ");
     }
 
     /**
@@ -93,10 +94,10 @@ public class ConsoleUI implements UserInterface {
 
     private void handleInput(String input) throws WrongFormatException {
         Pattern pattern = Pattern.compile("(O|M)([A-I])([0-8])", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(input);
+        Matcher matcher = pattern.matcher(input.toUpperCase());
 
         if (input.equals("X")) {
-            System.out.println("Game over.");
+            System.out.println("Game exited.");
             System.exit(1);
         }
         if (!matcher.matches()) {

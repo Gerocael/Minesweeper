@@ -138,6 +138,10 @@ public class Field {
         return counter;
     }
 
+    public int getRemainingMineCount(){
+        return (mineCount-getNumberOf(Tile.State.MARKED));
+    }
+
     /**
      * Returns number of adjacent mines for a tile at specified position in the field.
      *
