@@ -110,11 +110,11 @@ public class ConsoleUI implements UserInterface {
                 } else {
                     field.markTile(row, column);
                 }
-        if (row > field.getRowCount() || column > field.getColumnCount()) {
-            throw new WrongFormatException("Larger number than expected.");
-        }
-        if (row < field.getRowCount() || column < field.getColumnCount()) {
-            throw new WrongFormatException("Smaller number than expected.");
-        }
+//        if (row > field.getRowCount() || column > field.getColumnCount()) {
+//            throw new WrongFormatException("Larger number than expected.");
+//        }
+//        if (row < field.getRowCount() || column < field.getColumnCount()) {
+//            throw new WrongFormatException("Smaller number than expected.");
+//        }
     }
 }
