@@ -74,8 +74,8 @@ public class ConsoleUI implements UserInterface {
             }
             System.out.println();
         }
-//        getRemainingMinesCount();
-//        System.out.printf("Remaining number of un/marked mines: %d%n", getRemainingMinesCount());
+        field.getRemainingMineCount();
+        System.out.printf("Remaining number of un/marked mines: %d%n", field.getRemainingMineCount());
         System.out.println("Please enter your selection <X> EXIT, <MA1> MARK, <OB4> OPEN: ");
     }
 
