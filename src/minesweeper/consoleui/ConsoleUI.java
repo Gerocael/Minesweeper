@@ -103,18 +103,12 @@ public class ConsoleUI implements UserInterface {
         if (!matcher.matches()) {
             throw new WrongFormatException("Wrong input.");
         }
-            int row = matcher.group(2).charAt(0) - 65;
-            int column = Integer.parseInt(matcher.group(3));
-                if (matcher.group(1).equals("O")) {
-                    field.openTile(row, column);
-                } else {
-                    field.markTile(row, column);
-                }
-//        if (row > field.getRowCount() || column > field.getColumnCount()) {
-//            throw new WrongFormatException("Larger number than expected.");
-//        }
-//        if (row < field.getRowCount() || column < field.getColumnCount()) {
-//            throw new WrongFormatException("Smaller number than expected.");
-//        }
+        int row = matcher.group(2).charAt(0) - 65;
+        int column = Integer.parseInt(matcher.group(3));
+        if (matcher.group(1).equals("O")) {
+            field.openTile(row, column);
+        } else {
+            field.markTile(row, column);
+        }
     }
 }
