@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import minesweeper.BestTimes;
 import minesweeper.Minesweeper;
 import minesweeper.core.*;
 
@@ -46,6 +47,7 @@ public class ConsoleUI implements UserInterface {
         if (field.getState() == GameState.SOLVED) {
             System.out.println("Win!");
             System.exit(0);
+//            System.getProperties();
 //            System.out.println(Minesweeper.getInstance().getBestTimes());
         } else {
             System.out.println("Game over.");
