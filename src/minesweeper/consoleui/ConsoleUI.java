@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import minesweeper.Minesweeper;
 import minesweeper.core.*;
 
 /**
@@ -45,6 +46,7 @@ public class ConsoleUI implements UserInterface {
         if (field.getState() == GameState.SOLVED) {
             System.out.println("Win!");
             System.exit(0);
+//            System.out.println(Minesweeper.getInstance().getBestTimes());
         } else {
             System.out.println("Game over.");
             System.exit(1);
@@ -93,13 +95,13 @@ public class ConsoleUI implements UserInterface {
     }
 
     private void handleInput(String input) throws WrongFormatException {
-        Pattern pattern = Pattern.compile("(O|M)([A-I])([0-8])", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(input.toUpperCase());
-
         if (input.equals("X")) {
             System.out.println("Game exited.");
             System.exit(1);
         }
+        Pattern pattern = Pattern.compile("(O|M)([A-I])([0-8])", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(input.toUpperCase());
+
         if (!matcher.matches()) {
             throw new WrongFormatException("Wrong input.");
         }

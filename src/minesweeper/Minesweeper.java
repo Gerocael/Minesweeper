@@ -12,18 +12,27 @@ public class Minesweeper {
      * User interface.
      */
     private UserInterface userInterface;
+    private static long startTime;
+    private static Minesweeper instance;
+
+    public static Minesweeper getInstance(){
+        if(instance == null) {
+            new Minesweeper();
+        }
+        return instance;
+    }
 
     /**
      * Constructor.
      */
     private Minesweeper() {
         userInterface = new ConsoleUI();
+        instance = this;
 
         Field field = new Field(9, 9, 10);
         userInterface.newGameStarted(field);
-    }
 
-    private static long startTime;
+    }
 
     /**
      * Main method.
@@ -33,10 +42,10 @@ public class Minesweeper {
     public static void main(String[] args) {
         startTime = System.currentTimeMillis();
         new Minesweeper();
-        this.getPlayingSeconds();
+        getPlayingSeconds();
     }
 
-    public int getPlayingSeconds() {
+    public static int getPlayingSeconds() {
         return (int) ((System.currentTimeMillis() - startTime) / 1000);
     }
 
