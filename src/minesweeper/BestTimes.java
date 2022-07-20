@@ -77,4 +77,3 @@ public class BestTimes implements Iterable<BestTimes.PlayerTime> {
         }
 
     }
-}
