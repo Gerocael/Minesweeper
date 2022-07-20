@@ -99,15 +99,18 @@ public class Field {
         while (i < mineCount) {
             int x = random.nextInt(rowCount);
             int y = random.nextInt(columnCount);
-            if (tiles[x][y] == null) {
-                tiles[x][y] = new Mine();
-                i++;
-            }
+                if (tiles[x][y] == null) {
+                    tiles[x][y] = new Mine();
+                    i++;
+                }
         }
         for (int j = 0; j < rowCount; j++) {
             for (int k = 0; k < columnCount; k++) {
                 if (tiles[j][k] == null) {
                     tiles[j][k] = new Clue(countAdjacentMines(j, k));
+                }
+                if (mineCount > rowCount * columnCount){
+                    return;
                 }
             }
         }
@@ -138,8 +141,8 @@ public class Field {
         return counter;
     }
 
-    public int getRemainingMineCount(){
-        return (mineCount-getNumberOf(Tile.State.MARKED));
+    public int getRemainingMineCount() {
+        return (mineCount - getNumberOf(Tile.State.MARKED));
     }
 
     /**

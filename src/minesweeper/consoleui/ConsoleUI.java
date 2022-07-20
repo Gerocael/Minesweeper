@@ -10,6 +10,8 @@ import minesweeper.BestTimes;
 import minesweeper.Minesweeper;
 import minesweeper.core.*;
 
+import javax.sound.midi.Soundbank;
+
 /**
  * Console user interface.
  */
@@ -40,15 +42,16 @@ public class ConsoleUI implements UserInterface {
     @Override
     public void newGameStarted(Field field) {
         this.field = field;
+        System.out.println("Name: ");
+        Minesweeper.getInstance().getBestTimes().addPlayerTime(readLine(), 0);
         do {
             update();
             processInput();
         } while (field.getState() == GameState.PLAYING);
         if (field.getState() == GameState.SOLVED) {
-            System.out.println("Win!");
-            System.exit(0);
-//            System.getProperties();
-//            System.out.println(Minesweeper.getInstance().getBestTimes());
+            Minesweeper.getInstance().getBestTimes().addPlayerTime(null,Minesweeper.getPlayingSeconds());
+            System.out.printf("Win, %s", Minesweeper.getInstance().getBestTimes());
+            System.exit(0);;
         } else {
             System.out.println("Game over.");
             System.exit(1);

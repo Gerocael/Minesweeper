@@ -61,10 +61,6 @@ public class BestTimes implements Iterable<BestTimes.PlayerTime> {
          */
         private final int time;
 
-        private BestTimes bestTimes;
-
-        private static Minesweeper instance;
-
 
         /**
          * Constructor.
@@ -82,8 +78,5 @@ public class BestTimes implements Iterable<BestTimes.PlayerTime> {
             return time - o.time;
         }
 
-        public BestTimes getBestTimes() {
-            return bestTimes;
-        }
     }
 }

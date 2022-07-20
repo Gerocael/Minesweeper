@@ -49,18 +49,6 @@ public class FieldTest {
                 "a different amount of mines was counted in the field than amount given in the constructor.");
     }
 
-//    @Test
-//    public void fieldWithTooManyMines() {
-//        Field fieldWithTooManyMines = null;
-//        int higherMineCount = rowCount * columnCount + randomGenerator.nextInt(10) + 1;
-//        try {
-//            fieldWithTooManyMines = new Field(rowCount, columnCount, higherMineCount);
-//        } catch (Exception e) {
-//            // field with more mines than tiles should not be created - it may fail on exception
-//        }
-//        assertTrue((fieldWithTooManyMines == null) || (fieldWithTooManyMines.getMineCount() <= (rowCount * columnCount)));
-//    }
-
     @Test
     public void checkFieldInitialization() {
         assertEquals(rowCount, field.getRowCount(), "Different rowcount initialized.");
@@ -82,5 +70,15 @@ public class FieldTest {
         field.markTile(row, col);
         assertEquals(Tile.State.OPEN, field.getTile(row, col).getState());
     }
-
+    @Test
+    public void fieldWithTooManyMines() {
+        Field fieldWithTooManyMines = null;
+        int higherMineCount = rowCount * columnCount + randomGenerator.nextInt(10) + 1;
+        try {
+            fieldWithTooManyMines = new Field(rowCount, columnCount, higherMineCount);
+        } catch (Exception e) {
+            // field with more mines than tiles should not be created - it may fail on exception
+        }
+        assertTrue((fieldWithTooManyMines == null) || (fieldWithTooManyMines.getMineCount() <= (rowCount * columnCount)));
+    }
 }
