@@ -7,11 +7,14 @@ import java.util.*;
  */
 
 public class BestTimes implements Iterable<BestTimes.PlayerTime> {
-    /** List of best player times. */
+    /**
+     * List of best player times.
+     */
     private List<PlayerTime> playerTimes = new ArrayList<PlayerTime>();
 
     /**
      * Returns an iterator over a set of  best times.
+     *
      * @return an iterator
      */
     public Iterator<PlayerTime> iterator() {
@@ -20,6 +23,7 @@ public class BestTimes implements Iterable<BestTimes.PlayerTime> {
 
     /**
      * Adds player time to best times.
+     *
      * @param name name ot the player
      * @param time player time in seconds
      */
@@ -31,6 +35,7 @@ public class BestTimes implements Iterable<BestTimes.PlayerTime> {
 
     /**
      * Returns a string representation of the object.
+     *
      * @return a string representation of the object
      */
     @Override
@@ -45,20 +50,25 @@ public class BestTimes implements Iterable<BestTimes.PlayerTime> {
     /**
      * Player time.
      */
-    public static class PlayerTime implements Comparable<PlayerTime>{
-        /** Player name. */
+    public static class PlayerTime implements Comparable<PlayerTime> {
+        /**
+         * Player name.
+         */
         private final String name;
 
-        /** Playing time in seconds. */
+        /**
+         * Playing time in seconds.
+         */
         private final int time;
 
         private BestTimes bestTimes;
 
-        private static  Minesweeper instance;
+        private static Minesweeper instance;
 
 
         /**
          * Constructor.
+         *
          * @param name player name
          * @param time playing game time in seconds
          */
@@ -68,12 +78,12 @@ public class BestTimes implements Iterable<BestTimes.PlayerTime> {
             this.time = time;
         }
 
-        public int compareTo(PlayerTime o){
+        public int compareTo(PlayerTime o) {
             return time - o.time;
         }
 
         public BestTimes getBestTimes() {
             return bestTimes;
         }
-
     }
+}

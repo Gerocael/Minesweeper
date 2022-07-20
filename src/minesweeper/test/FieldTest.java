@@ -20,12 +20,13 @@ public class FieldTest {
     private int minesCount;
 
     @BeforeEach
-    public void initTests(){
+    public void initTests() {
         rowCount = randomGenerator.nextInt(10) + 5;
         columnCount = rowCount;
         minesCount = Math.max(1, randomGenerator.nextInt(rowCount + columnCount));
         field = new Field(rowCount, columnCount, minesCount);
     }
+
     public FieldTest() {
         rowCount = randomGenerator.nextInt(10) + 5;
         columnCount = rowCount;
@@ -69,15 +70,17 @@ public class FieldTest {
     }
 
     @Test
-    public void checkMarkTile(){ //Check solution on git
-        int x = randomGenerator.nextInt(rowCount);
-        int y = randomGenerator.nextInt(columnCount);
-        field.getTile(x,y).setState(Tile.State.MARKED);
-        assertEquals(Tile.State.MARKED, field.getTile(x,y), "Not marked.");
+    public void checkMarkTile() {
+        int row = 5, col = 5;
+        assertEquals(Tile.State.CLOSED, field.getTile(row, col).getState());
+        field.markTile(row, col);
+        assertEquals(Tile.State.MARKED, field.getTile(row, col).getState());
+        field.markTile(row, col);
+        assertEquals(Tile.State.CLOSED, field.getTile(row, col).getState());
+        field.openTile(row, col);
+        assertEquals(Tile.State.OPEN, field.getTile(row, col).getState());
+        field.markTile(row, col);
+        assertEquals(Tile.State.OPEN, field.getTile(row, col).getState());
     }
 
-//    @Test
-//    public void checkOpenMines(){
-//        assertEquals(field.getTile(rowCount,columnCount) instanceof Mine, field.getState());
-//    }
 }
