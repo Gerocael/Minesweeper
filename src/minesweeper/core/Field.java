@@ -94,14 +94,13 @@ public class Field {
      * Generates playing field.
      */
     private void generate() {
-        int i = 0;
         Random random = new Random();
-        while (i < mineCount) {
+        for (int i = 0; i < mineCount; i++)
+         {
             int x = random.nextInt(rowCount);
             int y = random.nextInt(columnCount);
                 if (tiles[x][y] == null) {
                     tiles[x][y] = new Mine();
-                    i++;
                 }
         }
         for (int j = 0; j < rowCount; j++) {

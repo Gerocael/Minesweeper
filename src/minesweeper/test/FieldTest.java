@@ -48,9 +48,9 @@ public class FieldTest {
 
     @Test
     public void checkFieldInitialization() {
-        assertEquals(rowCount, field.getRowCount(), "Different rowcount initialized.");
-        assertEquals(columnCount, field.getColumnCount(), "Different columncount initialized.");
-        assertEquals(minesCount, field.getMineCount(), "Different minecount initialized.");
+        assertEquals(rowCount, field.getRowCount(), "Different row count initialized.");
+        assertEquals(columnCount, field.getColumnCount(), "Different column-count initialized.");
+        assertEquals(minesCount, field.getMineCount(), "Different mine-count initialized.");
         assertEquals(GameState.PLAYING, field.getState(), "Not playing.");
     }
 
@@ -88,15 +88,16 @@ public class FieldTest {
                     if(((Clue) field.getTile(rowCount, columnCount)).getValue()>0){
                         field.getTile(rowCount,columnCount).setState(Tile.State.OPEN);
                     }
-//                    if(((Clue) field.getTile(rowCount, columnCount)).getValue()==0){ //Neotvorí to už priamo len Clues s hodnotou 0, takže je zbytočné pozerať či je typ Clue?
-//                        field.getTile(rowCount,columnCount).setState(Tile.State.OPEN);
-//                    }
+                    if(((Clue) field.getTile(rowCount, columnCount)).getValue()==0){
+                        field.getTile(rowCount,columnCount).setState(Tile.State.OPEN);
+                    }
                     if(field.getTile(rowCount,columnCount).getState()==Tile.State.CLOSED){
                         field.getTile(rowCount,columnCount).setState(Tile.State.MARKED);
                     }
                 }
             }
         }
+        assertEquals(field.getTile(rowCount,columnCount).getState(), GameState.PLAYING, "Not playing.");
         assertEquals(field.getTile(rowCount,columnCount).getState(), GameState.PLAYING, "Not playing.");
         assertEquals(field.getTile(rowCount,columnCount).getState(), Tile.State.MARKED, "Not marked.");
     }

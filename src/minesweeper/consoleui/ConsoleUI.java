@@ -42,18 +42,18 @@ public class ConsoleUI implements UserInterface {
     @Override
     public void newGameStarted(Field field) {
         this.field = field;
-        System.out.println("Name: ");
-        Minesweeper.getInstance().getBestTimes().addPlayerTime(readLine(), 0);
+        System.out.println("What should I call you: ");
+        String player = readLine();
         do {
             update();
             processInput();
         } while (field.getState() == GameState.PLAYING);
         if (field.getState() == GameState.SOLVED) {
-            Minesweeper.getInstance().getBestTimes().addPlayerTime(null,Minesweeper.getPlayingSeconds());
-            System.out.printf("Win, %s", Minesweeper.getInstance().getBestTimes());
+            Minesweeper.getInstance().getBestTimes().addPlayerTime(player, Minesweeper.getPlayingSeconds());
+            System.out.printf("Glorious victory! Best times \n %s\n", Minesweeper.getInstance().getBestTimes());
             System.exit(0);;
         } else {
-            System.out.println("Game over.");
+            System.out.println("Game over, potato.");
             System.exit(1);
         }
     }
@@ -82,7 +82,7 @@ public class ConsoleUI implements UserInterface {
             System.out.println();
         }
         field.getRemainingMineCount();
-        System.out.printf("Remaining number of un/marked mines: %d%n", field.getRemainingMineCount());
+        System.out.printf("Remaining number of marked/remaining mines: %d%n", field.getRemainingMineCount());
         System.out.println("Please enter your selection <X> EXIT, <MA1> MARK, <OB4> OPEN: ");
     }
 
