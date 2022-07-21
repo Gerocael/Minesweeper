@@ -1,9 +1,11 @@
 package minesweeper.core;
 
+import java.io.Serializable;
+
 /**
  * Tile of a field.
  */
-public abstract class Tile {
+public abstract class Tile implements Serializable {
     
     /** Tile states. */
     public enum State {

@@ -1,11 +1,12 @@
 package minesweeper.core;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  * Field represents playing field and game logic.
  */
-public class Field {
+public class Field implements Serializable {
     /**
      * Playing field tiles.
      */

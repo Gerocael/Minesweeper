@@ -1,9 +1,11 @@
 package minesweeper.core;
 
+import java.io.Serializable;
+
 /**
  * Clue tile.
  */
-public class Clue  extends Tile {
+public class Clue  extends Tile implements Serializable {
     /** Value of the clue. */
     private final int value;
     

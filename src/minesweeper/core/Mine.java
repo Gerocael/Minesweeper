@@ -1,9 +1,11 @@
 package minesweeper.core;
 
+import java.io.Serializable;
+
 /**
  * Mine tile.
  */
-public class Mine extends Tile {
+public class Mine extends Tile implements Serializable {
 
     @Override
     public String toString() {

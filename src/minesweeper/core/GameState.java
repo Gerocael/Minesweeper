@@ -1,9 +1,11 @@
 package minesweeper.core;
 
+import java.io.Serializable;
+
 /**
  * Game state.
  */
-public enum GameState {
+public enum GameState implements Serializable {
     /** Playing game. */
     PLAYING,
     
