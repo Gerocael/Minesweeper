@@ -2,10 +2,7 @@ package minesweeper;
 
 import org.w3c.dom.ls.LSOutput;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.Objects;
 
 public class Settings {
@@ -22,17 +19,44 @@ public class Settings {
     }
 
     public void save() {
-        ObjectOutputStream oos;
+        ObjectOutputStream oos = null;
         try {
-            oos = new ObjectOutputStream(new File FileOutputStream);
+            oos = new ObjectOutputStream(
+                    new FileOutputStream(SETTING_FILE));
             oos.writeObject(this);
         } catch (IOException e) {
-            System.out.println("");
+            System.out.println("Unable to write settings into the object.");
+        } finally {
+            if (oos != null) {
+                try {
+                    oos.close();
+                } catch (IOException e) {
+                }
+            }
         }
     }
 
-    public void load() {
+    public static Settings load() {
+        ObjectInputStream ois = null;
 
+        try {
+            ois = new ObjectInputStream(
+                    new FileInputStream(SETTING_FILE));
+            Settings s = (Settings) ois.readObject();
+            return s;
+        } catch (IOException e) {
+            System.out.println("Cannot open Settings doc. Default = Beginner.");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Cannot read Settings doc. Default = Beginner.");
+        } finally {
+            if (ois != null) {
+                try {
+                    ois.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+        return Beginner;
     }
 
     @Override

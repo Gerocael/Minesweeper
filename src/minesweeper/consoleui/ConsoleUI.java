@@ -6,11 +6,9 @@ import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import minesweeper.BestTimes;
 import minesweeper.Minesweeper;
+import minesweeper.Settings;
 import minesweeper.core.*;
-
-import javax.sound.midi.Soundbank;
 
 /**
  * Console user interface.
@@ -42,6 +40,22 @@ public class ConsoleUI implements UserInterface {
     @Override
     public void newGameStarted(Field field) {
         this.field = field;
+        System.out.println("Pick your difficulty:");
+        System.out.println("(1) BEGINNER, (2) INTERMEDIATE, (3) EXPERT, (ENTER) leave DEFAULT");
+        String level = readLine();
+        if(level != null && !level.equals("")) {
+            try {
+                int intLevel = Integer.parseInt(level);
+                Settings s = switch (intLevel) {
+                    case 2 -> Settings.Intermediate;
+                    case 3 -> Settings.Expert;
+                    default -> Settings.Beginner;
+                };
+                Minesweeper.getInstance().setSetting(s);
+                this.field = new Field(s.getRowCount(), s.getColumnCount(), s.getMineCount());
+            } catch (NumberFormatException e) {
+            }
+        }
         System.out.println("What should I call you: ");
         String player = readLine();
         do {
@@ -60,23 +74,23 @@ public class ConsoleUI implements UserInterface {
 
     @Override
     public void update() {
-        System.out.print("  ");
+        System.out.print("   ");
         for (int i = 0; i < field.getColumnCount(); i++) {
-            System.out.printf("%2s", i);
+            System.out.printf("%3s", i);
         }
         System.out.println();
         for (int i = 0; i < field.getRowCount(); i++) {
-            System.out.printf("%2c", (i + 65));
+            System.out.printf("%3c", (i + 65));
             for (int j = 0; j < field.getColumnCount(); j++) {
                 Tile t = field.getTile(i, j);
                 if (t.getState() == Tile.State.OPEN) {
-                    System.out.printf("%2s", t);
+                    System.out.printf("%3s", t);
                 }
                 if (t.getState() == Tile.State.MARKED) {
-                    System.out.printf("%2s", "M");
+                    System.out.printf("%3s", "M");
                 }
                 if (t.getState() == Tile.State.CLOSED) {
-                    System.out.printf("%2s", "-");
+                    System.out.printf("%3s", "-");
                 }
             }
             System.out.println();

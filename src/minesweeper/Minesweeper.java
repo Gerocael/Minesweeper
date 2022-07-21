@@ -33,6 +33,8 @@ public class Minesweeper {
     private Minesweeper() {
         userInterface = new ConsoleUI();
         instance = this;
+        setting = Settings.load();
+
         Field field = new Field(9, 9, 1);
         userInterface.newGameStarted(field);
 
@@ -55,6 +57,7 @@ public class Minesweeper {
 
     public void setSetting(Settings setting) {
         this.setting = setting;
+        this.setting.save();
     }
 
     public static int getPlayingSeconds() {
